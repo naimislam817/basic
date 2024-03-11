@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu.dart';
+import 'location.dart'; // Importing location.dart file which contains LocationPage
 
 void main() {
   runApp(MyApp());
@@ -13,9 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      initialRoute: '/', // Set the initial route to home
       routes: {
-        '/menu': (context) => MenuPage(),
+        '/': (context) => HomePage(), // Home route
+        '/menu': (context) => MenuPage(), // Menu route
+        '/branches': (context) => LocationPage(), // Branches route
       },
     );
   }
@@ -29,11 +32,23 @@ class HomePage extends StatelessWidget {
         title: Text('Restaurant App'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/menu');
-          },
-          child: Text('View Menu'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/menu');
+              },
+              child: Text('View Menu'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/branches');
+              },
+              child: Text('Branches'),
+            ),
+          ],
         ),
       ),
     );
